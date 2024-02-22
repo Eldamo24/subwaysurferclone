@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum PlayerPosition
+public enum Side
 {
     Left = -2,
     Middle = 0,
@@ -13,30 +13,40 @@ public enum PlayerPosition
 
 public class PlayerController : MonoBehaviour
 {
-
-    private PlayerPosition playerPosition;
-    private Transform playerTransform;
+    private Transform myTransform;
+    private CharacterController _myCharacterController;
+    public CharacterController MyCharacterController { get => _myCharacterController; set => _myCharacterController = value; }
+    private Animator myAnimator;
+    private Vector3 motionVector;
+    [Header ("Player Controller")]
+    [SerializeField] private float forwardSpeed;
+    [SerializeField] private float dodgeSpeed;
+    [SerializeField] private float jumpPower;
+    private Side position;
     private bool swipeLeft, swipeRight, swipeUp, swipeDown;
+    [Header("Player States")]
+    [SerializeField] private bool isJumping;
+    [SerializeField] private bool isRolling;
+    [SerializeField] private bool isGrounded; 
+
     private float newXPosition;
-    private Animator playerAnimator;
+    private float rollTimer;
+    private float xPosition;
+    private float yPosition;
     private int IDDodgeLeft = Animator.StringToHash("DodgeLeft");
     private int IDDodgeRight = Animator.StringToHash("DodgeRight");
     private int IDJump = Animator.StringToHash("Jump");
     private int IDFall = Animator.StringToHash("Fall");
     private int IDLanding = Animator.StringToHash("Landing");
-    private float xPosition;
-    [SerializeField] private float dodgeSpeed;
-    private CharacterController characterController;
-    private Vector3 motionVector;
-    [SerializeField] private float jumpPower;
-    private float yPosition;
+    private int IDRoll = Animator.StringToHash("Roll");
+
 
     void Start()
     {
-        playerPosition = PlayerPosition.Middle;
-        playerTransform = GetComponent<Transform>();
-        playerAnimator = GetComponent<Animator>();
-        characterController = GetComponent<CharacterController>();
+        position = Side.Middle;
+        myTransform = GetComponent<Transform>();
+        myAnimator = GetComponent<Animator>();
+        _myCharacterController = GetComponent<CharacterController>();
         yPosition = -7;
     }
 
@@ -45,6 +55,10 @@ public class PlayerController : MonoBehaviour
     {
         GetSwipe();
         SetPlayerPosition();
+        MovePlayer();
+        Jump();
+        Roll();
+        isGrounded = _myCharacterController.isGrounded;
     }
 
     private void GetSwipe()
@@ -52,73 +66,75 @@ public class PlayerController : MonoBehaviour
         swipeLeft = Input.GetKeyDown(KeyCode.A);
         swipeRight = Input.GetKeyDown(KeyCode.D);
         swipeUp = Input.GetKeyDown(KeyCode.Space);
+        swipeDown = Input.GetKeyDown(KeyCode.S);
     }
 
     private void SetPlayerPosition()
     {
-        if (swipeLeft)
+        if (swipeLeft && !isRolling)
         {
-            if(playerPosition == PlayerPosition.Middle)
+            if(position == Side.Middle)
             {
-                UpdatePlayerXPosition(PlayerPosition.Left);
+                UpdatePlayerXPosition(Side.Left);
                 SetPlayerAnimator(IDDodgeLeft, false);
             }
-            else if (playerPosition == PlayerPosition.Right)
+            else if (position == Side.Right)
             {
-                UpdatePlayerXPosition(PlayerPosition.Middle);
+                UpdatePlayerXPosition(Side.Middle);
                 SetPlayerAnimator(IDDodgeLeft, false);
             }
         }
-        else if (swipeRight)
+        else if (swipeRight && !isRolling)
         {
-            if (playerPosition == PlayerPosition.Middle)
+            if (position == Side.Middle)
             {
-                UpdatePlayerXPosition(PlayerPosition.Right);
+                UpdatePlayerXPosition(Side.Right);
                 SetPlayerAnimator(IDDodgeRight, false);
             }
-            else if (playerPosition == PlayerPosition.Left)
+            else if (position == Side.Left)
             {
-                UpdatePlayerXPosition(PlayerPosition.Middle);
+                UpdatePlayerXPosition(Side.Middle);
                 SetPlayerAnimator(IDDodgeRight, false);
             }
         }
-        MovePlayer();
-        Jump();
+       
     }
 
-    private void UpdatePlayerXPosition(PlayerPosition plPosition)
+    private void UpdatePlayerXPosition(Side plPosition)
     {
         newXPosition = (int)plPosition;   
-        playerPosition = plPosition;
+        position = plPosition;
     }
 
     private void SetPlayerAnimator(int id, bool isCrossFade, float fadeTime = 0.1f)
     {
         if(isCrossFade)
         {
-            playerAnimator.CrossFadeInFixedTime(id, fadeTime);
+            myAnimator.CrossFadeInFixedTime(id, fadeTime);
         }
         else
         {
-            playerAnimator.Play(id);
+            myAnimator.Play(id);
         }
     }
 
     private void MovePlayer()
     {
-        motionVector = new Vector3(xPosition - playerTransform.position.x, yPosition * Time.deltaTime, 0);
+        motionVector = new Vector3(xPosition - myTransform.position.x, yPosition * Time.deltaTime, forwardSpeed * Time.deltaTime);
         xPosition = Mathf.Lerp(xPosition, newXPosition, Time.deltaTime * dodgeSpeed);
-        characterController.Move(motionVector);
+        _myCharacterController.Move(motionVector);
     }
 
     private void Jump()
     {
-        if (characterController.isGrounded)
+        if (_myCharacterController.isGrounded)
         {
-            if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Fall"))
+            isJumping = false;
+            if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Fall"))
                 SetPlayerAnimator(IDLanding, false);
-            if (swipeUp)
+            if (swipeUp && !isRolling)
             {
+                isJumping = true;
                 yPosition = jumpPower;
                 SetPlayerAnimator(IDJump, true);
             }
@@ -126,9 +142,34 @@ public class PlayerController : MonoBehaviour
         else
         {
             yPosition -= jumpPower * 2 * Time.deltaTime;
-            SetPlayerAnimator(IDFall, false);
+            if(_myCharacterController.velocity.y <=0)
+                SetPlayerAnimator(IDFall, false);
 
         }
     }
+
+
+    private void Roll()
+    {
+        rollTimer -= Time.deltaTime;
+        if(rollTimer < 0)
+        {
+            isRolling = false;
+            rollTimer = 0;
+            //Character controller tamaño normal
+            _myCharacterController.center = new Vector3(0, .45f, 0);
+            _myCharacterController.height = .9f;
+        }
+        if (swipeDown &&  !isJumping)
+        {
+            isRolling = true;
+            rollTimer = .5f;
+            SetPlayerAnimator(IDRoll, true);
+            //Achicar character controller
+            _myCharacterController.center = new Vector3(0, .2f, 0);
+            _myCharacterController.height = .4f;
+        }
+    }
+
 
 }
