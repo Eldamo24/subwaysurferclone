@@ -39,6 +39,18 @@ public class PlayerController : MonoBehaviour
     private int IDFall = Animator.StringToHash("Fall");
     private int IDLanding = Animator.StringToHash("Landing");
     private int IDRoll = Animator.StringToHash("Roll");
+    private int IDStumbleLow = Animator.StringToHash("StumbleLow");
+    private int IDStumbleCornerRight = Animator.StringToHash("StumbleCornerRight");
+    private int IDStumbleCornerLeft = Animator.StringToHash("StumbleCornerLeft");
+    private int IDStumbleFall = Animator.StringToHash("StumbleFall");
+    private int IDStubmleOffLeft = Animator.StringToHash("StumbleOffLeft");
+    private int IDStumbleOffRight = Animator.StringToHash("StumbleOffRight"); 
+    private int IDStumbleSideLeft = Animator.StringToHash("StumbleSideLeft");
+    private int IDStumbleSideRight = Animator.StringToHash("StubmleSideRight");
+    private int IIDDeathBounce = Animator.StringToHash("DeathBounce");
+    private int IDDeathLower = Animator.StringToHash("DeathLower");
+    private int IDDeathMovingTrain = Animator.StringToHash("DeathMovingTrain");
+    private int IDDeathUpper = Animator.StringToHash("DeathUpper");
 
 
     void Start()
@@ -106,7 +118,7 @@ public class PlayerController : MonoBehaviour
         position = plPosition;
     }
 
-    private void SetPlayerAnimator(int id, bool isCrossFade, float fadeTime = 0.1f)
+    public void SetPlayerAnimator(int id, bool isCrossFade, float fadeTime = 0.1f)
     {
         if(isCrossFade)
         {
