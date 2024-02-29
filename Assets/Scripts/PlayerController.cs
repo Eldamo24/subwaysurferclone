@@ -133,6 +133,7 @@ public class PlayerController : MonoBehaviour
 
     public void SetPlayerAnimator(int id, bool isCrossFade, float fadeTime = 0.1f)
     {
+        myAnimator.SetLayerWeight(0,1);
         if(isCrossFade)
         {
             myAnimator.CrossFadeInFixedTime(id, fadeTime);
@@ -143,6 +144,13 @@ public class PlayerController : MonoBehaviour
         }
         ResetCollision();
     }
+
+    public void SetPlayerAnimatorWithLayer(int id)
+    {
+        myAnimator.SetLayerWeight(1, 1);
+        myAnimator.Play(id);
+        ResetCollision();
+    } 
 
     private void ResetCollision()
     {

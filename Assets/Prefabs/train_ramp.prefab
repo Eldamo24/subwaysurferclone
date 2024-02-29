@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4867890641538083182}
   m_Layer: 0
   m_Name: Collision
-  m_TagString: Untagged
+  m_TagString: Ramp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 780417899093934377}
   serializedVersion: 2
   m_LocalRotation: {x: -0.17085113, y: -0, z: -0, w: 0.9852969}
-  m_LocalPosition: {x: 0.07999992, y: 1.43, z: -0.92}
+  m_LocalPosition: {x: 0.07999992, y: 1.51, z: -1.37}
   m_LocalScale: {x: 0.20279735, y: 1, z: 0.8240875}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -67,7 +67,7 @@ GameObject:
   - component: {fileID: 3348933152138748421}
   m_Layer: 0
   m_Name: train_ramp
-  m_TagString: Untagged
+  m_TagString: Ramp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

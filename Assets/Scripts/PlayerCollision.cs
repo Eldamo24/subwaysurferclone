@@ -131,6 +131,7 @@ public class PlayerCollision : MonoBehaviour
         {
             if(_collisionY == CollisionY.LowDown)
             {
+                collider.enabled = false;
                 playerController.SetPlayerAnimator(playerController.IDStumbleLow, false);
             }
             else if(_collisionY == CollisionY.Down)
@@ -143,7 +144,7 @@ public class PlayerCollision : MonoBehaviour
                 {
                     playerController.SetPlayerAnimator(playerController.IDDeathMovingTrain, false);
                 }
-                else
+                else if(!collider.CompareTag("Ramp"))
                 {
                     playerController.SetPlayerAnimator(playerController.IIDDeathBounce, false);
                 }
@@ -168,11 +169,11 @@ public class PlayerCollision : MonoBehaviour
         {
             if(_collisionX == CollisionX.Right)
             {
-                playerController.SetPlayerAnimator(playerController.IDStumbleCornerRight, false);
+                playerController.SetPlayerAnimatorWithLayer(playerController.IDStumbleCornerRight);
             }
             else if(_collisionX == CollisionX.Left)
             {
-                playerController.SetPlayerAnimator(playerController.IDStumbleCornerLeft, false);
+                playerController.SetPlayerAnimatorWithLayer(playerController.IDStumbleCornerLeft);
             }
         }
     }
