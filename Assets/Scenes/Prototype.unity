@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1412929962}
     m_Modifications:
+    - target: {fileID: 1065852557039845991, guid: df030ca069b257640a5d718d89b2e037, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a8ee4fc6a0957dd4a8a4d45bd25d9995, type: 2}
     - target: {fileID: 1186310814740468858, guid: df030ca069b257640a5d718d89b2e037, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -342,6 +346,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6689420196098690143, guid: e280dcadad0a9f042adaf6f20f83ad6c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bdb76dd4e900a7f47bf01a1f78f63fc3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1548,6 +1556,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6689420196098690143, guid: e280dcadad0a9f042adaf6f20f83ad6c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bdb76dd4e900a7f47bf01a1f78f63fc3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1610,6 +1622,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3847847268011061334, guid: f31def52eb90976478265f01ca5c63c6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a8ee4fc6a0957dd4a8a4d45bd25d9995, type: 2}
     - target: {fileID: 4954173348570315080, guid: f31def52eb90976478265f01ca5c63c6, type: 3}
       propertyPath: m_Size.y
       value: 2.1428664
@@ -2383,6 +2399,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1412929962}
     m_Modifications:
+    - target: {fileID: 3348933152138748421, guid: 73401eb78bc64f84390eb6e8c4c2e577, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 15fc7c0afa251d645961782dc146bb35, type: 2}
     - target: {fileID: 4123995658107610502, guid: 73401eb78bc64f84390eb6e8c4c2e577, type: 3}
       propertyPath: m_Name
       value: train_ramp
@@ -3178,6 +3198,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9142583138387620986, guid: 52a8c1d80019e29489268b1975d4f750, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a8ee4fc6a0957dd4a8a4d45bd25d9995, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3305,6 +3329,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: train_cargo_3
       objectReference: {fileID: 0}
+    - target: {fileID: 6714851285184755474, guid: 81e7714a66391e34c8920b5322cf177e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bdb76dd4e900a7f47bf01a1f78f63fc3, type: 2}
     - target: {fileID: 8803040434109503844, guid: 81e7714a66391e34c8920b5322cf177e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2
