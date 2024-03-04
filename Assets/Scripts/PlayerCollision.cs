@@ -137,21 +137,25 @@ public class PlayerCollision : MonoBehaviour
             else if(_collisionY == CollisionY.Down)
             {
                 playerController.SetPlayerAnimator(playerController.IDDeathLower, false);
+                playerController.IsDead = true;
             }
             else if(_collisionY == CollisionY.Middle)
             {
                 if (collider.CompareTag("TrainOn"))
                 {
                     playerController.SetPlayerAnimator(playerController.IDDeathMovingTrain, false);
+                    playerController.IsDead = true;
                 }
                 else if(!collider.CompareTag("Ramp"))
                 {
                     playerController.SetPlayerAnimator(playerController.IIDDeathBounce, false);
+                    playerController.IsDead = true;
                 }
             }
             else if(_collisionY == CollisionY.Up && !playerController.IsRolling)
             {
                 playerController.SetPlayerAnimator(playerController.IDDeathUpper, false);
+                playerController.IsDead = true;
             }
         }
         else if(_collisionZ == CollisionZ.Middle)

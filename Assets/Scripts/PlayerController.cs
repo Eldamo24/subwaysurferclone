@@ -29,7 +29,9 @@ public class PlayerController : MonoBehaviour
     [Header("Player States")]
     [SerializeField] private bool isJumping;
     [SerializeField] private bool _isRolling;
-    [SerializeField] private bool isGrounded; 
+    [SerializeField] private bool isGrounded;
+    private bool _isDead;
+    public bool IsDead { get => _isDead; set => _isDead = value; }
 
     private float newXPosition;
     private float rollTimer;
@@ -65,6 +67,7 @@ public class PlayerController : MonoBehaviour
     public int IDStumbleSideLeft { get => _IDStumbleSideLeft; set => _IDStumbleSideLeft = value; }
     public int IDStumbleSideRight { get => _IDStumbleSideRight; set => _IDStumbleSideRight = value; }
 
+
     void Start()
     {
         position = Side.Middle;
@@ -73,6 +76,7 @@ public class PlayerController : MonoBehaviour
         _myCharacterController = GetComponent<CharacterController>();
         playerCollision = GetComponent<PlayerCollision>();
         yPosition = -7;
+        _isDead = false;
     }
 
     
