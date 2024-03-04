@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -13,11 +14,6 @@ public class ShaderController : MonoBehaviour
 
     private void Start()
     {
-        foreach(var m in materials)
-        {
-            m.SetFloat("_Curve_X", 0);
-            m.SetFloat("_Curve_Y", 0);
-        }
         StartCoroutine("Curve");
     }
 
@@ -51,12 +47,26 @@ public class ShaderController : MonoBehaviour
         }
     }
 
-        //    foreach (var m in materials)
-        //{
-            
-        //    //m.SetFloat(Shader.PropertyToID("_Curve_X"), curveX);
-        //    //m.SetFloat(Shader.PropertyToID("_Curve_Y"), curveY);
-        //}
+    public void ResetValues()
+    {
+        foreach (var m in materials)
+        {
+            m.SetFloat("_Curve_X", 0);
+            m.SetFloat("_Curve_Y", 0);
+        }
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
+    //    foreach (var m in materials)
+    //{
+
+    //    //m.SetFloat(Shader.PropertyToID("_Curve_X"), curveX);
+    //    //m.SetFloat(Shader.PropertyToID("_Curve_Y"), curveY);
+    //}
 
 
 

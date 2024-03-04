@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
         playerAnimator = GameObject.Find("Player").GetComponent<Animator>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         shaderController = GameObject.Find("CurveLevel").GetComponent<ShaderController>();
+        shaderController.ResetValues();
+        shaderController.enabled = false;
         StartCoroutine("StartGame");
     }
 
