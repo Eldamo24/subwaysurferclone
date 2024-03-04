@@ -163,10 +163,12 @@ public class PlayerCollision : MonoBehaviour
             if(_collisionX == CollisionX.Right)
             {
                 playerController.SetPlayerAnimator(playerController.IDStumbleSideRight, false);
+                playerController.UpdatePlayerXPosition(playerController.LastPosition);
             }
             else if(_collisionX == CollisionX.Left)
             {
                 playerController.SetPlayerAnimator(playerController.IDStumbleSideLeft, false);
+                playerController.UpdatePlayerXPosition(playerController.LastPosition);
             }
         }
         else

@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dodgeSpeed;
     [SerializeField] private float jumpPower;
     private Side position;
+    private Side _lastPosition;
+    public Side LastPosition { get => _lastPosition; set => _lastPosition = value; }
+
     private bool swipeLeft, swipeRight, swipeUp, swipeDown;
     [Header("Player States")]
     [SerializeField] private bool isJumping;
@@ -67,7 +70,6 @@ public class PlayerController : MonoBehaviour
     public int IDStumbleSideLeft { get => _IDStumbleSideLeft; set => _IDStumbleSideLeft = value; }
     public int IDStumbleSideRight { get => _IDStumbleSideRight; set => _IDStumbleSideRight = value; }
 
-
     void Start()
     {
         position = Side.Middle;
@@ -96,10 +98,15 @@ public class PlayerController : MonoBehaviour
         swipeRight = Input.GetKeyDown(KeyCode.D);
         swipeUp = Input.GetKeyDown(KeyCode.Space);
         swipeDown = Input.GetKeyDown(KeyCode.S);
+        if(swipeDown || swipeLeft || swipeRight || swipeUp)
+        {
+            _lastPosition = position;
+        }
     }
 
     private void SetPlayerPosition()
     {
+        
         if (swipeLeft && !_isRolling)
         {
             if(position == Side.Middle)
@@ -129,8 +136,9 @@ public class PlayerController : MonoBehaviour
        
     }
 
-    private void UpdatePlayerXPosition(Side plPosition)
+    public void UpdatePlayerXPosition(Side plPosition)
     {
+        
         newXPosition = (int)plPosition;   
         position = plPosition;
     }
