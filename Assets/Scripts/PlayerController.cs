@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController _myCharacterController;
     public CharacterController MyCharacterController { get => _myCharacterController; set => _myCharacterController = value; }
     private PlayerCollision playerCollision;
+    private CapsuleCollider playerCollider;
 
     private Animator myAnimator;
     private Vector3 motionVector;
@@ -79,6 +80,7 @@ public class PlayerController : MonoBehaviour
         playerCollision = GetComponent<PlayerCollision>();
         yPosition = -7;
         _isDead = false;
+        playerCollider = GameObject.Find("Character Model").GetComponent<CapsuleCollider>();
     }
 
     
@@ -212,6 +214,8 @@ public class PlayerController : MonoBehaviour
             //Character controller tamaño normal
             _myCharacterController.center = new Vector3(0, .45f, 0);
             _myCharacterController.height = .9f;
+            playerCollider.height = 0.8f;
+            playerCollider.center = new Vector3(0f, 0.47f, 0.18f);
         }
         if (swipeDown &&  !isJumping)
         {
@@ -221,6 +225,8 @@ public class PlayerController : MonoBehaviour
             //Achicar character controller
             _myCharacterController.center = new Vector3(0, .2f, 0);
             _myCharacterController.height = .4f;
+            playerCollider.height = .4f;
+            playerCollider.center = new Vector3(0f, .2f, 0.18f);
         }
     }
 

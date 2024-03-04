@@ -8,11 +8,13 @@ public class GameManager : MonoBehaviour
     private Animator playerAnimator;
     private PlayerController playerController;
     [SerializeField] private float timeToStart = 3f;
+    private ShaderController shaderController;
 
     private void Start()
     {
         playerAnimator = GameObject.Find("Player").GetComponent<Animator>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        shaderController = GameObject.Find("CurveLevel").GetComponent<ShaderController>();
         StartCoroutine("StartGame");
     }
 
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour
         {
             playerAnimator.enabled = true;
             playerController.enabled = true;
+            shaderController.enabled = true;
         }
         if (playerController.IsDead)
         {
@@ -59,6 +62,7 @@ public class GameManager : MonoBehaviour
     private void Death()
     {
         playerController.enabled = false;
+        shaderController.enabled = false;
         if (playerAnimator.IsInTransition(0))
         {
             playerAnimator.enabled = false;

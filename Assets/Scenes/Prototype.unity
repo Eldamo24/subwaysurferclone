@@ -1632,11 +1632,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a8ee4fc6a0957dd4a8a4d45bd25d9995, type: 2}
     - target: {fileID: 4954173348570315080, guid: f31def52eb90976478265f01ca5c63c6, type: 3}
       propertyPath: m_Size.y
-      value: 2.1428664
+      value: 1.985358
       objectReference: {fileID: 0}
     - target: {fileID: 4954173348570315080, guid: f31def52eb90976478265f01ca5c63c6, type: 3}
       propertyPath: m_Center.y
-      value: 1.8676022
+      value: 1.9463564
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2485,7 +2485,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1412929960}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6eaac504ec19184d80346cce3b35b6f, type: 3}
   m_Name: 
@@ -2493,9 +2493,9 @@ MonoBehaviour:
   curveX: 0
   curveY: 0
   materials:
+  - {fileID: 2100000, guid: a8ee4fc6a0957dd4a8a4d45bd25d9995, type: 2}
   - {fileID: 2100000, guid: bdb76dd4e900a7f47bf01a1f78f63fc3, type: 2}
   - {fileID: 2100000, guid: 15fc7c0afa251d645961782dc146bb35, type: 2}
-  - {fileID: 2100000, guid: a8ee4fc6a0957dd4a8a4d45bd25d9995, type: 2}
 --- !u!4 &1412929962
 Transform:
   m_ObjectHideFlags: 0
@@ -3561,6 +3561,14 @@ PrefabInstance:
     - target: {fileID: 5854588989555224282, guid: ac28e61b43d86534cbf8a4bb13fabc4a, type: 3}
       propertyPath: forwardSpeed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632086608778506594, guid: ac28e61b43d86534cbf8a4bb13fabc4a, type: 3}
+      propertyPath: m_Center.y
+      value: 0.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632086608778506594, guid: ac28e61b43d86534cbf8a4bb13fabc4a, type: 3}
+      propertyPath: m_Center.z
+      value: 0.18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
