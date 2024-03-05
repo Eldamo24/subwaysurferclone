@@ -12,7 +12,7 @@ public class ShaderController : MonoBehaviour
     [SerializeField] private Material[] materials;
     private float lerpDuration = 2f;
 
-    private void Start()
+    private void OnEnable()
     {
         StartCoroutine("Curve");
     }
@@ -61,14 +61,7 @@ public class ShaderController : MonoBehaviour
         StopAllCoroutines();
     }
 
-    //    foreach (var m in materials)
-    //{
-
-    //    //m.SetFloat(Shader.PropertyToID("_Curve_X"), curveX);
-    //    //m.SetFloat(Shader.PropertyToID("_Curve_Y"), curveY);
-    //}
-
-
+   
 
 
 
