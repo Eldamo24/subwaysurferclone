@@ -63,12 +63,7 @@ public class GameManager : MonoBehaviour
 
     private void Death()
     {
-        playerController.enabled = false;
         shaderController.enabled = false;
-        if (playerAnimator.IsInTransition(0))
-        {
-            playerAnimator.enabled = false;
-        }
     }
 
 }

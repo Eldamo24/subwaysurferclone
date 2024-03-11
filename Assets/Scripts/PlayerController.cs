@@ -86,12 +86,16 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        GetSwipe();
-        SetPlayerPosition();
-        MovePlayer();
-        Jump();
-        Roll();
-        isGrounded = _myCharacterController.isGrounded;
+        if (!_isDead)
+        {
+            GetSwipe();
+            SetPlayerPosition();
+            MovePlayer();
+            Jump();
+            Roll();
+            isGrounded = _myCharacterController.isGrounded;
+        }
+
     }
 
     private void GetSwipe()
